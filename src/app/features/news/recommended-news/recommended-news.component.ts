@@ -1,4 +1,3 @@
-// src/app/features/news/recommended-news/recommended-news.component.ts
 import { Component, Input } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterLink } from '@angular/router';
