@@ -1,4 +1,3 @@
-// src/app/features/news/news-detail/news-detail.component.ts
 import { Component, OnInit } from '@angular/core';
 import { CommonModule, DatePipe } from '@angular/common';
 import { ActivatedRoute, Router } from '@angular/router';
