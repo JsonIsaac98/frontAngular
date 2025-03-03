@@ -1,4 +1,3 @@
-// src/app/core/auth/services/auth.service.ts
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { BehaviorSubject, Observable, map, tap } from 'rxjs';
@@ -10,22 +9,12 @@ import { environment } from '../../../../environments/environment';
 })
 export class AuthService {
   private readonly TOKEN_KEY = 'auth_token';
-  private readonly USER_KEY = 'current_user';
   private currentUserSubject: BehaviorSubject<User | null>;
   public currentUser$: Observable<User | null>;
 
   constructor(private http: HttpClient) {
-    const savedUser = localStorage.getItem(this.USER_KEY);
     let parsedUser: User | null = null;
   
-    if (savedUser) {
-      try {
-        parsedUser = JSON.parse(savedUser);
-      } catch (error) {
-        console.error('Error parsing user data from localStorage:', error);
-        localStorage.removeItem(this.USER_KEY);
-      }
-    }
   
     this.currentUserSubject = new BehaviorSubject<User | null>(parsedUser);
     this.currentUser$ = this.currentUserSubject.asObservable();
@@ -47,7 +36,6 @@ export class AuthService {
 
   logout(): void {
     localStorage.removeItem(this.TOKEN_KEY);
-    localStorage.removeItem(this.USER_KEY);
     this.currentUserSubject.next(null);
   }
 
@@ -67,7 +55,6 @@ export class AuthService {
 
   private setSession(authResult: AuthResponse): void {
     localStorage.setItem(this.TOKEN_KEY, authResult.token);
-    localStorage.setItem(this.USER_KEY, JSON.stringify(authResult.user));
     this.currentUserSubject.next(authResult.user);
   }
 

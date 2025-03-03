@@ -67,10 +67,6 @@
 
   <div class="md:hidden" [ngClass]="{'block': isMobileMenuOpen, 'hidden': !isMobileMenuOpen}">
     <div class="px-2 pt-2 pb-3 space-y-1 sm:px-3">
-      <div class="text-white bg-red-600 p-2 mb-2">
-        Auth: {{authService.isAuthenticated()}} | 
-        User: {{getCurrentUsername() || 'No user'}}
-      </div>
     
       <a routerLink="/" routerLinkActive="bg-indigo-700" [routerLinkActiveOptions]="{exact: true}" class="text-white block px-3 py-2 rounded-md text-base font-medium hover:bg-indigo-500">
         Inicio
